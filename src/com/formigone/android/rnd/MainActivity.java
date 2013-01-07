@@ -17,7 +17,6 @@ public class MainActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         
         ArticleService articleService = ArticleFactory.getArticleService();
         List<Article> articles = articleService.getArticles(25);
@@ -25,10 +24,10 @@ public class MainActivity extends ListActivity {
 
         for (Article article : articles)
         	titles.add(article.getTitle());
-        
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.article_card, R.id.article_card_txt, titles);
-        
-        ListView listView = (ListView) findViewById(android.R.id.list);
+
+        ListView listView = getListView();
         listView.setAdapter(adapter);
     }
 }
