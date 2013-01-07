@@ -13,10 +13,9 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -89,16 +88,49 @@ public class KSLRssArticleService implements ArticleService {
 		//  +---- description
 		//  +---- pubDate
 		
+		//
+		//
+		//
 		for (int i = 0; i < nodeList.getLength() && i < max; i++) {
-			Node itemNode = nodeList.item(i);
-			itemNode.normalize();
-			Node titleNode = itemNode.getFirstChild().getNextSibling();
-			String title = titleNode.getTextContent();
-			Article article = new Article(">> " + title);
-			System.out.println("Title: " + article.getTitle());
+			Node item = nodeList.item(i);
+			
+			Node node = item.getFirstChild().getNextSibling();
+			String title = node.getTextContent();
+			System.out.println("Title: " + title);
+			
+			Article article = new Article(title);
+			System.out.println("-----");
 			
 			articles.add(article);
 		}
+		//
+		//
+		//
+		
+		
+		//
+		//
+		//
+/*		for (int i = 0; i < nodeList.getLength() && i < max; i++) {
+			Node item = nodeList.item(i);
+			
+			NodeList itemNodes = item.getChildNodes();
+			for (int x = 0; x < itemNodes.getLength(); x++) {
+
+				// TODO: Find a way to query the node!
+				Node node = itemNodes.item(x);
+				if (node.getNodeName() == "title") {
+					String title = node.getTextContent();
+					System.out.println("Title: " + title);
+					Article article = new Article(title);
+					articles.add(article);
+					break;
+				}
+			}
+			//
+			//
+			//
+		}*/
 
 		return articles;
 	}

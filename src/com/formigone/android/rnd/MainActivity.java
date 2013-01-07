@@ -18,7 +18,7 @@ public class MainActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         ArticleService articleService = ArticleFactory.getArticleService();
-        List<Article> articles = articleService.getArticles(25);
+        List<Article> articles = articleService.getArticles(23);
 
         ArticleAdapter adapter = new ArticleAdapter(this, R.layout.article_card, articles);
 

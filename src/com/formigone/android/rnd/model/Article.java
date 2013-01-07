@@ -4,7 +4,34 @@ public class Article {
 	private int id;
 	private String title;
 	private String content;
+	private String author;
+	private String date;
+	private String summary;
 	
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
 	public Article(String title) {
 		this.title = title;
 	}
