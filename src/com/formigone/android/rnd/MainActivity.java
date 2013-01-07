@@ -1,13 +1,12 @@
 package com.formigone.android.rnd;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.formigone.android.rnd.adapter.ArticleAdapter;
 import com.formigone.android.rnd.model.Article;
 import com.formigone.android.rnd.service.ArticleFactory;
 import com.formigone.android.rnd.service.ArticleService;
@@ -20,12 +19,8 @@ public class MainActivity extends ListActivity {
         
         ArticleService articleService = ArticleFactory.getArticleService();
         List<Article> articles = articleService.getArticles(25);
-        List<String> titles = new ArrayList<String>();
 
-        for (Article article : articles)
-        	titles.add(article.getTitle());
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.article_card, R.id.article_card_txt, titles);
+        ArticleAdapter adapter = new ArticleAdapter(this, R.layout.article_card, articles);
 
         ListView listView = getListView();
         listView.setAdapter(adapter);
