@@ -16,7 +16,7 @@ public class MainActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         ArticleService articleService = ArticleFactory.getArticleService();
         List<Article> articles = articleService.getArticles(25);
 

@@ -38,7 +38,7 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 			TextView title = (TextView) view.findViewById(R.id.article_card_txt);
 			
 			if (title != null)
-				title.setText(">> " + article.getTitle());
+				title.setText(article.getTitle());
 		}
 
 		return view;
