@@ -8,40 +8,46 @@
     android:paddingRight="10dp"
     android:paddingTop="5dp" >
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/card_shadow"
-        android:orientation="vertical"
-        android:padding="5dp" >
+    <ViewAnimator
+        android:id="@+id/article_card_animator"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/article_card_txt"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="top|left"
-            android:padding="5dp"
-            android:text="Bacon ipsum dolor sit amet tri-tip pastrami rump chuck ribeye."
-            android:textSize="23sp"
-            android:typeface="sans" />
+            android:background="@drawable/card_shadow"
+            android:orientation="vertical"
+            android:padding="5dp" >
 
-        <TextView
-            android:id="@+id/article_card_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="25dp"
-            android:paddingLeft="5dp"
-            android:text="TextView"
-            android:textColor="#ffaaaaaa" />
+            <TextView
+                android:id="@+id/article_card_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:padding="5dp"
+                android:text="Bacon ipsum dolor sit amet tri-tip pastrami rump chuck ribeye."
+                android:textSize="23sp"
+                android:typeface="sans" />
 
-        <ImageView
-            android:id="@+id/article_card_img"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/newspaper_pattern"
-            android:scaleType="fitXY" />
+            <TextView
+                android:id="@+id/article_card_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25dp"
+                android:paddingLeft="5dp"
+                android:text="TextView"
+                android:textColor="#ffaaaaaa" />
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/article_card_img"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/newspaper_pattern"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+    </ViewAnimator>
 
 </LinearLayout>

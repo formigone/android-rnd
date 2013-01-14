@@ -15,7 +15,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -134,34 +133,6 @@ public class KSLRssArticleService implements ArticleService {
 			
 			articles.add(article);
 		}
-		//
-		//
-		//
-		
-		
-		//
-		//
-		//
-/*		for (int i = 0; i < nodeList.getLength() && i < max; i++) {
-			Node item = nodeList.item(i);
-			
-			NodeList itemNodes = item.getChildNodes();
-			for (int x = 0; x < itemNodes.getLength(); x++) {
-
-				// TODO: Find a way to query the node!
-				Node node = itemNodes.item(x);
-				if (node.getNodeName() == "title") {
-					String title = node.getTextContent();
-					System.out.println("Title: " + title);
-					Article article = new Article(title);
-					articles.add(article);
-					break;
-				}
-			}
-			//
-			//
-			//
-		}*/
 
 		return articles;
 	}

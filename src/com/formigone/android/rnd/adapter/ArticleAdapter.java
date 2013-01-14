@@ -18,9 +18,12 @@ import android.support.v4.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewAnimator;
 
 import com.formigone.android.rnd.R;
 import com.formigone.android.rnd.model.Article;
@@ -30,6 +33,7 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 	private List<Article> articles;
 	private LruCache<String, Drawable> imgCache;
 	private Typeface font;
+	private int lastPosition;
 
 	public ArticleAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
@@ -45,6 +49,8 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 		final int cacheSize = 1024 * 1024 * memClass / 8;
 		
 		imgCache = new LruCache<String, Drawable>(cacheSize);
+		
+		lastPosition = 0;
 	}
 	
 	private class ImgDownloader extends AsyncTask<URL, Integer, Long> {
@@ -128,6 +134,20 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 			}
 		}
 
+		if (position >= lastPosition && lastPosition > 0) {
+			ViewAnimator viewAnim = (ViewAnimator) view.findViewById(R.id.article_card_animator);
+			Animation anim;
+			
+			anim = new TranslateAnimation(
+					Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+					Animation.RELATIVE_TO_SELF, 0.1f, Animation.RELATIVE_TO_SELF, 0.0f);
+
+			anim.setDuration(500);
+			viewAnim.setAnimation(anim);
+		}
+		
+
+		lastPosition = position;
 		return view;
 	}
 }
