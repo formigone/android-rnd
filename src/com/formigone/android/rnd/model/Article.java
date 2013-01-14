@@ -3,6 +3,7 @@ package com.formigone.android.rnd.model;
 public class Article {
 	private int id;
 	private String title;
+	private String img;
 	private String content;
 	private String author;
 	private String date;
@@ -38,6 +39,14 @@ public class Article {
 
 	public String getTitle() {
 		return title;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public void setTitle(String title) {

@@ -16,6 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -93,12 +94,42 @@ public class KSLRssArticleService implements ArticleService {
 		//
 		for (int i = 0; i < nodeList.getLength() && i < max; i++) {
 			Node item = nodeList.item(i);
+			NodeList children = item.getChildNodes();
 			
-			Node node = item.getFirstChild().getNextSibling();
-			String title = node.getTextContent();
-			System.out.println("Title: " + title);
-			
+			String title = null;
+			String img = null;
+			String date = null;
+			String summary = null;
+
+			for (int n = 0; n < children.getLength(); n++) {
+
+				Node child = children.item(n);
+				if (child.getNodeName().equals("title")) {
+					title = child.getTextContent();
+				}
+				
+				else if (child.getNodeName().equals("enclosure")) {
+					NamedNodeMap attr = child.getAttributes();
+					Node url = attr.getNamedItem("url");
+					if (url != null)
+						img = url.getNodeValue();
+				} else if (child.getNodeName().equals("pubDate")) {
+					date = child.getTextContent();
+				} else if (child.getNodeName().equals("description")) {
+					summary = child.getTextContent();
+				}
+				
+				if (title != null && img != null && date != null && summary != null)
+					break;
+			}
+
 			Article article = new Article(title);
+			article.setImg(img);
+			article.setDate(date);
+			System.out.println("Title: " + title);
+			System.out.println("Img: " + img);
+			System.out.println("Date: " + date);
+			System.out.println("Summary: " + summary);
 			System.out.println("-----");
 			
 			articles.add(article);
