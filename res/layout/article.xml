@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:padding="5dp" >
+
+        <ViewAnimator
+            android:id="@+id/article_card_animator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp" >
+
+                <ImageView
+                    android:id="@+id/article_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/newspaper_pattern"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/article_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|left"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="10dp"
+                    android:text="Bacon ipsum dolor sit amet tri-tip pastrami rump chuck ribeye."
+                    android:textSize="26sp"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/article_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="15dp"
+                    android:text="Date"
+                    android:textColor="#ffaaaaaa" />
+
+                <TextView
+                    android:id="@+id/article_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="top|left"
+                    android:lineSpacingMultiplier="1.25"
+                    android:paddingBottom="25dp"
+                    android:text="Content"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </ViewAnimator>
+    </LinearLayout>
+
+</ScrollView>

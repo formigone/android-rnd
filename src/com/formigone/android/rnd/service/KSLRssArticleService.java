@@ -98,7 +98,7 @@ public class KSLRssArticleService implements ArticleService {
 			String title = null;
 			String img = null;
 			String date = null;
-			String summary = null;
+			String content = null;
 
 			for (int n = 0; n < children.getLength(); n++) {
 
@@ -115,20 +115,21 @@ public class KSLRssArticleService implements ArticleService {
 				} else if (child.getNodeName().equals("pubDate")) {
 					date = child.getTextContent();
 				} else if (child.getNodeName().equals("description")) {
-					summary = child.getTextContent();
+					content = child.getTextContent();
 				}
 				
-				if (title != null && img != null && date != null && summary != null)
+				if (title != null && img != null && date != null && content != null)
 					break;
 			}
 
 			Article article = new Article(title);
 			article.setImg(img);
 			article.setDate(date);
+			article.setContent(content);
 			System.out.println("Title: " + title);
 			System.out.println("Img: " + img);
 			System.out.println("Date: " + date);
-			System.out.println("Summary: " + summary);
+			System.out.println("Content: " + content);
 			System.out.println("-----");
 			
 			articles.add(article);
