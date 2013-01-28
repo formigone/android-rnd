@@ -118,6 +118,7 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 					intent.putExtra("date", article.getDate());
 					intent.putExtra("content", article.getContent());
 					intent.putExtra("img", article.getImg());
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 					getContext().startActivity(intent);
 				}
@@ -129,10 +130,11 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 					.findViewById(R.id.article_card_animator);
 			Animation anim;
 
-			anim = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-					Animation.RELATIVE_TO_SELF, 0.0f,
-					Animation.RELATIVE_TO_SELF, 0.2f,
-					Animation.RELATIVE_TO_SELF, 0.0f);
+			int transType = Animation.RELATIVE_TO_SELF;
+			anim = new TranslateAnimation(transType, 0.0f,
+					transType, 0.0f,
+					transType, 0.5f,
+					transType, 0.0f);
 
 			anim.setDuration(700);
 			viewAnim.setAnimation(anim);

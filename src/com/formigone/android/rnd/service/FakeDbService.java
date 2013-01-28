@@ -39,7 +39,7 @@ public class FakeDbService implements ArticleService {
 	 * 
 	 **********************************************************/
 	private void cleanRepo(ArticleRepository repo) {
-		repo.clean();
+		repo.empty();
 	}
 	
 	/**********************************************************

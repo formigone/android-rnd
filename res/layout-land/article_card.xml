@@ -14,21 +14,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <LinearLayout
+        <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/card_shadow"
-            android:orientation="vertical"
             android:padding="5dp" >
+
+            <ImageView
+                android:id="@+id/article_card_img"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:background="@drawable/newspaper_pattern"
+                android:scaleType="fitXY" />
 
             <TextView
                 android:id="@+id/article_card_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/article_card_img"
                 android:gravity="top|left"
-                android:padding="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="0dp"
                 android:text="Tupacsum Ipsum And even though I act crazy."
+                android:textColorHint="#333333"
                 android:textSize="23sp"
                 android:typeface="sans" />
 
@@ -36,18 +47,14 @@
                 android:id="@+id/article_card_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/article_card_txt"
+                android:layout_toRightOf="@id/article_card_img"
                 android:paddingBottom="25dp"
                 android:paddingLeft="5dp"
                 android:text="TextView"
                 android:textColor="#ffaaaaaa" />
 
-            <ImageView
-                android:id="@+id/article_card_img"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/newspaper_pattern"
-                android:scaleType="fitXY" />
-        </LinearLayout>
+        </RelativeLayout>
 
     </ViewAnimator>
 

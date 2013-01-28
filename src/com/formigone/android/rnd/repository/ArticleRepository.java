@@ -40,7 +40,7 @@ public class ArticleRepository {
 	/**********************************************************
 	 * 
 	 **********************************************************/
-	public void clean() {
+	public void empty() {
 		db = dbHelper.getWritableDatabase();
 		db.execSQL("DELETE FROM " + DbHelper.TABLE_NAME);
 		db.close();
@@ -55,19 +55,12 @@ public class ArticleRepository {
 
 		return parseArticles(cursor);
 	}
-	
+
 	/**********************************************************
 	 * 
 	 **********************************************************/
 	public List<Article> getAllArticles() {
-		
-		this.clean();
-		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
-		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
-		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
-		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
-		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
-		
+
 		db = dbHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM " + DbHelper.TABLE_NAME, null);
 		
