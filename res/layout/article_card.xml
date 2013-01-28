@@ -10,7 +10,7 @@
 
     <ViewAnimator
         android:id="@+id/article_card_animator"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
         <LinearLayout
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="top|left"
                 android:padding="5dp"
-                android:text="Bacon ipsum dolor sit amet tri-tip pastrami rump chuck ribeye."
+                android:text="Tupacsum Ipsum And even though I act crazy."
                 android:textSize="23sp"
                 android:typeface="sans" />
 

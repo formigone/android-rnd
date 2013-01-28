@@ -51,4 +51,10 @@ public class FakeDbService implements ArticleService {
 		repo.addArticle(new Article("Do you buy stuff to feel better?", "http://img.ksl.com/slc/850/85099/8509959.jpg", "Mon, 28 Jan 2013 06:15:00 MST", "Coach Kim gives some advice on breaking free from the need to shop to feel better."));
 		repo.addArticle(new Article("In Wasatch Mountains, man makes dog sledding a way of life", "http://img.ksl.com/slc/2504/250482/25048246.jpg", "Sun, 27 Jan 2013 22:26:00 MST", "When you think of dog sledding, you most likely think of Alaska and Canada."));
 	}
+
+	@Override
+	public List<Article> getCachedArticles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

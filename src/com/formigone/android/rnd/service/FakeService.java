@@ -53,4 +53,10 @@ public class FakeService implements ArticleService {
 
 		return data;
 	}
+
+	@Override
+	public List<Article> getCachedArticles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

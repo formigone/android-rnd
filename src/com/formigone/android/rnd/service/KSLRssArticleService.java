@@ -149,4 +149,10 @@ public class KSLRssArticleService implements ArticleService {
 
 		return articles;
 	}
+
+	@Override
+	public List<Article> getCachedArticles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

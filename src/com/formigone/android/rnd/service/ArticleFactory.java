@@ -6,6 +6,6 @@ public class ArticleFactory {
 	public static final ArticleService getArticleService(Context ctx) {
 //		return new FakeService();
 //		return new KSLRssArticleService();
-		return new FakeDbService(ctx);
+		return new KSLRssCachedArticleService(ctx);
 	}
 }

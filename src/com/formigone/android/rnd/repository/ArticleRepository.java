@@ -14,11 +14,17 @@ public class ArticleRepository {
 
 	private SQLiteOpenHelper dbHelper;
 	private SQLiteDatabase db;
-	
+
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	public ArticleRepository(SQLiteOpenHelper dbHelper) {
 		this.dbHelper = dbHelper;
 	}
 	
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	public void addArticle(Article article) {
 		db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -31,18 +37,50 @@ public class ArticleRepository {
 		db.close();
 	}
 	
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	public void clean() {
 		db = dbHelper.getWritableDatabase();
 		db.execSQL("DELETE FROM " + DbHelper.TABLE_NAME);
 		db.close();
 	}
 
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	public List<Article> getArticles(int max) {
-		List<Article> articles = new ArrayList<Article>();
+		db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM " + DbHelper.TABLE_NAME + " LIMIT " + max, null);
+
+		return parseArticles(cursor);
+	}
+	
+	/**********************************************************
+	 * 
+	 **********************************************************/
+	public List<Article> getAllArticles() {
+		
+		this.clean();
+		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
+		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
+		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
+		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
+		this.addArticle(new Article("TITLE ONE!", null, "Mon, 28 Jan 2013 10:45:15 MST", "Iran says it sent monkey into space and back"));
 		
 		db = dbHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM " + DbHelper.TABLE_NAME, null);
 		
+		return parseArticles(cursor);
+	}
+	
+	/**********************************************************
+	 * 
+	 **********************************************************/
+	private List<Article> parseArticles(Cursor cursor) {
+		
+		List<Article> articles = new ArrayList<Article>();
+
 		if (cursor.moveToFirst()) {
 			int COL_TITLE = cursor.getColumnIndex(DbHelper.COL_ARTICLE_TITLE);
 			int COL_IMG = cursor.getColumnIndex(DbHelper.COL_ARTICLE_IMG);
