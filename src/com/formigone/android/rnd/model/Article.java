@@ -1,5 +1,8 @@
 package com.formigone.android.rnd.model;
 
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+
 public class Article {
 	private int id;
 	private String title;
@@ -8,6 +11,14 @@ public class Article {
 	private String author;
 	private String date;
 	private String summary;
+	
+	public Article() {}
+	public Article(String title, String img, String date, String content) {
+		this.title = title;
+		this.img = img;
+		this.date = date;
+		this.content = content;
+	}
 	
 	public String getAuthor() {
 		return author;

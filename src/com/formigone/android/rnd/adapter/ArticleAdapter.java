@@ -33,43 +33,57 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 	private Typeface font;
 	private int lastPosition;
 
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	public ArticleAdapter(Context context, int textViewResourceId) {
 		super(context, textViewResourceId);
 	}
-	
+
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	public ArticleAdapter(Context context, int resource, List<Article> articles) {
 		super(context, resource, articles);
 		this.articles = articles;
-		font = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf");
-		
-		final int memClass = ((ActivityManager) context.getSystemService(
-				Context.ACTIVITY_SERVICE)).getMemoryClass();
+		font = Typeface.createFromAsset(context.getAssets(),
+				"fonts/Roboto-Light.ttf");
+
+		final int memClass = ((ActivityManager) context
+				.getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass();
 		final int cacheSize = 1024 * 1024 * memClass / 8;
-		
+
 		imgCache = new LruCache<String, Drawable>(cacheSize);
-		
+
 		lastPosition = 0;
 	}
-	
+
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	@Override
 	public View getView(int position, View contentView, ViewGroup parent) {
 		View view = contentView;
 
 		if (view == null)
-			view = LayoutInflater.from(getContext()).inflate(R.layout.article_card, null);
+			view = LayoutInflater.from(getContext()).inflate(
+					R.layout.article_card, null);
 
 		final Article article = articles.get(position);
-		
+
 		if (article != null) {
-			TextView title = (TextView) view.findViewById(R.id.article_card_txt);
-			TextView date = (TextView) view.findViewById(R.id.article_card_date);
-			ImageView img = (ImageView) view.findViewById(R.id.article_card_img);
+			TextView title = (TextView) view
+					.findViewById(R.id.article_card_txt);
+			TextView date = (TextView) view
+					.findViewById(R.id.article_card_date);
+			ImageView img = (ImageView) view
+					.findViewById(R.id.article_card_img);
 
 			title.setText(article.getTitle());
 			title.setTypeface(font);
 			date.setText(article.getDate());
 			date.setTypeface(font);
-			
+
 			img.setVisibility(ImageView.GONE);
 			String imgSrc = article.getImg();
 
@@ -77,7 +91,8 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 
 				img.setVisibility(TextView.VISIBLE);
 				img.setImageResource(R.drawable.newspaper_pattern);
-				ImgDownloader imgDownloader = new ImgDownloader(img, imgSrc, imgCache);
+				ImgDownloader imgDownloader = new ImgDownloader(img, imgSrc,
+						imgCache);
 
 				if (imgCache.get(imgSrc) == null) {
 					try {
@@ -89,15 +104,16 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 				} else {
 					imgDownloader.loadImage();
 				}
-					
+
 			}
-			
+
 			view.setClickable(true);
 			view.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View view) {
-					Intent intent = new Intent(getContext(), NewsArticleActivity.class);
+					Intent intent = new Intent(getContext(),
+							NewsArticleActivity.class);
 					intent.putExtra("title", article.getTitle());
 					intent.putExtra("date", article.getDate());
 					intent.putExtra("content", article.getContent());
@@ -109,17 +125,19 @@ public class ArticleAdapter extends ArrayAdapter<Article> {
 		}
 
 		if (position >= lastPosition && lastPosition > 0) {
-			ViewAnimator viewAnim = (ViewAnimator) view.findViewById(R.id.article_card_animator);
+			ViewAnimator viewAnim = (ViewAnimator) view
+					.findViewById(R.id.article_card_animator);
 			Animation anim;
-			
-			anim = new TranslateAnimation(
-					Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
-					Animation.RELATIVE_TO_SELF, 0.2f, Animation.RELATIVE_TO_SELF, 0.0f);
+
+			anim = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+					Animation.RELATIVE_TO_SELF, 0.0f,
+					Animation.RELATIVE_TO_SELF, 0.2f,
+					Animation.RELATIVE_TO_SELF, 0.0f);
 
 			anim.setDuration(700);
 			viewAnim.setAnimation(anim);
 		}
-		
+
 		lastPosition = position;
 		return view;
 	}

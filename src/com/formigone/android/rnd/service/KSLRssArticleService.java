@@ -27,11 +27,14 @@ public class KSLRssArticleService implements ArticleService {
 
 	private static final String url = "http://www.ksl.com/xml/148,1070.rss";
 
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	@Override
 	public List<Article> getArticles(int max) {
 		if (max < 1)
 			max = 1;
-		
+
 		List<Article> articles = new ArrayList<Article>();
 
 		try {
@@ -52,6 +55,9 @@ public class KSLRssArticleService implements ArticleService {
 		return articles;
 	}
 
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	private String getRss(final String url) throws MalformedURLException, IOException {
 		InputStream in = new URL(url).openConnection().getInputStream();
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -63,7 +69,10 @@ public class KSLRssArticleService implements ArticleService {
 		
 		return sb.toString();
 	}
-	
+
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	private Document createXML(final String xml) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
@@ -74,6 +83,9 @@ public class KSLRssArticleService implements ArticleService {
 		return doc;
 	}
 
+	/**********************************************************
+	 * 
+	 **********************************************************/
 	private List<Article> getArticlesFromFeed(Document feed, int max) {
 		List<Article> articles = new ArrayList<Article>();
 
