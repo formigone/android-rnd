@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -50,64 +53,65 @@ public class PhotoApi {
 	}
 
 	protected Result call(String url) {
-//		JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, url,
-//				null,
-//				new Listener<JSONObject>() {
-//
-//					@Override
-//					public void onResponse(JSONObject response) {
-//						Log.i(TAG, response.toString());
-//					}
-//				}, new ErrorListener() {
-//
-//					@Override
-//					public void onErrorResponse(VolleyError error) {
-//						Log.i(TAG, "API Error");
-//					}
-//				});
-//
-//		FragsApplication.getRequestQueue().add(req);
-//
-//		String data = url;
-//
-//		// TODO: Do JSON Request with Volley
-//		Result res = new Result(Result.STATUS.SUCCESS, data);
-//
-//		return res;
-		
 		StringBuilder str = new StringBuilder();
-		HttpGet req = new HttpGet(url);
-		Result out = new Result(Result.STATUS.SUCCESS, "");
+//		HttpGet req = new HttpGet(url);
+		Result out = new Result(Result.STATUS.ERROR, "");
 		
 		try {
-			HttpResponse resp = mClient.execute(req);
-			int code = resp.getStatusLine().getStatusCode();
-
-			if (code == 200) {
-				HttpEntity entity = resp.getEntity();
-				InputStream content = entity.getContent();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-				String line;
+			URL u = new URL(url);
+			HttpURLConnection con = null;
+			
+			try {
+				con = (HttpURLConnection)u.openConnection();
+				con.setDoOutput(true);
+				con.setRequestMethod("GET");
+				con.connect();
 				
-				while ((line = reader.readLine()) != null) {
-					str.append(line);
+				if (con.getResponseCode() == 200) {
+					out.data = con.getRequestMethod();
+				} else {
+					out.data = "Response code " + con.getResponseCode();
 				}
-
-				try {
-					JSONObject json = new JSONObject(str.toString());
-					out.data = json.getString("result");
-					Log.i(TAG, "JSON.result = " + out.data);
-				} catch (JSONException e) {
-					out.status = Result.STATUS.ERROR;
+			} catch (IOException e) {
+				out.data = "IO Exception";
+			} finally {
+				if (con != null) {
+					con.disconnect();
 				}
-			} else {
-				out.status = Result.STATUS.ERROR;
 			}
-		} catch (ClientProtocolException e) {
-			out.status = Result.STATUS.ERROR;
-		} catch (IOException e) {
-			out.status = Result.STATUS.ERROR;
+		} catch (MalformedURLException e1) {
+			out.data = "Malformed URL";
 		}
+		
+//		try {
+//			HttpResponse resp = mClient.execute(req);
+//			int code = resp.getStatusLine().getStatusCode();
+//
+//			if (code == 200) {
+//				HttpEntity entity = resp.getEntity();
+//				InputStream content = entity.getContent();
+//				BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+//				String line;
+//				
+//				while ((line = reader.readLine()) != null) {
+//					str.append(line);
+//				}
+//
+//				try {
+//					JSONObject json = new JSONObject(str.toString());
+//					out.data = json.getString("result");
+//					Log.i(TAG, "JSON.result = " + out.data);
+//				} catch (JSONException e) {
+//					out.status = Result.STATUS.ERROR;
+//				}
+//			} else {
+//				out.status = Result.STATUS.ERROR;
+//			}
+//		} catch (ClientProtocolException e) {
+//			out.status = Result.STATUS.ERROR;
+//		} catch (IOException e) {
+//			out.status = Result.STATUS.ERROR;
+//		}
 		
 		return out;
 	}
