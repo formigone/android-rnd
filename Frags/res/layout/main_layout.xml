@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/main_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/sectionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:gravity="center"
+        android:padding="@dimen/edgePadding"
+        android:text="@string/HeadingCustomListView"
+        android:textColor="@color/darkGray"
+        android:textSize="@dimen/cardTitle" />
+
+    <ListView
+        android:id="@+id/sectionItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:addStatesFromChildren="true"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:drawSelectorOnTop="true"
+        android:listSelector="@drawable/card_selector"
+        android:scrollingCache="true"
+        android:smoothScrollbar="true" >
+
+    </ListView>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+    </FrameLayout>
+
+</LinearLayout>

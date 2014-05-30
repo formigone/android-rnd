@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_card_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    android:orientation="vertical"
+    android:padding="@dimen/edgePaddingHalf"
+    android:paddingLeft="@dimen/edgePadding"
+    android:paddingRight="@dimen/edgePadding"
+    tools:ignore="HardcodedText" >
+
+    <RelativeLayout
+        android:id="@+id/main_card_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/edgePadding"
+        android:paddingBottom="0dp" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="@dimen/cardTitle"
+            android:textStyle="normal"
+            android:typeface="sans" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/bottomBorder"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="0dp"
+        android:background="@color/darkGray" />
+
+</LinearLayout>

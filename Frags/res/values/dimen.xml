@@ -1,0 +1,8 @@
+<resources>
+
+    <dimen name="edgePadding">16dp</dimen>
+    <dimen name="edgePaddingHalf">8dp</dimen>
+    
+    <dimen name="cardTitle">23sp</dimen>
+
+</resources>

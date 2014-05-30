@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+    </style>
+
+    <color name="selectorRedPressed">#88cc0000</color>
+    <color name="selectorRedSelected">#33ff0000</color>
+    
+    <color name="lightGray">#bbb</color>
+    <color name="darkGray">#333</color>
+    <color name="white">#fff</color>
+</resources>
