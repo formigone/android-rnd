@@ -20,20 +20,18 @@ public class PhotoLoader extends AsyncTaskLoader<List<Photo>> {
 
 	public PhotoLoader(Context context) {
 		super(context);
-		Log.i(TAG, "constructor");
 	}
 
 	@Override
 	public List<Photo> loadInBackground() {
-		Log.i(TAG, "loadInBackground");
-
 		List<Photo> data = new ArrayList<Photo>();
 		PhotoApi api = new PhotoApi();
 
-		PhotoApi.Result res = api.getPhotos(50);
+		PhotoApi.Result res = api.getPhotos(3);
 
 		try {
-			JSONArray jsonArray = new JSONArray(res.data);
+			JSONObject json = new JSONObject(res.data);
+			JSONArray jsonArray = json.getJSONArray("result");
 
 			for (int i = 0; i < jsonArray.length(); i++) {
 				String str = jsonArray.getString(i);
@@ -49,22 +47,17 @@ public class PhotoLoader extends AsyncTaskLoader<List<Photo>> {
 	@Override
 	public void deliverResult(List<Photo> data) {
 		super.deliverResult(data);
-
-		Log.i(TAG, "deliverResult");
 	}
 
 	@Override
 	protected void onStartLoading() {
 		super.onStartLoading();
 
-		Log.i(TAG, "onStartLoading");
 		if (mData != null) {
-			Log.i(TAG, "delivering result");
 			deliverResult(mData);
 		}
 
 		if (isStarted()) {
-			Log.i(TAG, "forcing load");
 			forceLoad();
 		}
 	}

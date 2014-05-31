@@ -1,23 +1,25 @@
 package com.formigone.frags.adapter;
 
+import java.net.URI;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.formigone.frags.R;
 import com.formigone.frags.view.Card;
 
 public class PhotoAdapter extends BaseAdapter {
+	private static final String TAG = "PhotoAdapter";
 
 	protected List<Card> items;
 	protected int layoutRes;
-	protected ImageLoader imageLoader;
 
 	public PhotoAdapter(Context context, int view, List<Card> items) {
 		this.items = items;
@@ -38,8 +40,9 @@ public class PhotoAdapter extends BaseAdapter {
 
 		NetworkImageView img = (NetworkImageView)convertView.findViewById(R.id.img);
 		if (img != null) {
-			// TODO: Init imageLoader
-			img.setImageUrl(item.getTitle(), imageLoader);
+			if (item.getImgLoader() != null) {
+				img.setImageUrl(item.getTitle(), item.getImgLoader());
+			}
 		}
 
 		return convertView;

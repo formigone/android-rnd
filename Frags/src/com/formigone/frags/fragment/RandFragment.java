@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.formigone.frags.FragsApplication;
 import com.formigone.frags.R;
 import com.formigone.frags.adapter.PhotoAdapter;
 import com.formigone.frags.loader.PhotoLoader;
@@ -86,7 +88,10 @@ public class RandFragment extends Fragment {
 			List<Card> cards = new ArrayList<Card>();
 			
 			for (Photo _photo:data) {
-				cards.add(new Card(_photo.getSrc(), "???"));
+				Card card = new Card(_photo.getSrc());
+				ImageLoader imgLoader = new ImageLoader(FragsApplication.getRequestQueue(), FragsApplication.getImageCache());
+				card.setImgLoader(imgLoader);
+				cards.add(card);
 			}
 
 			mAdapter = new PhotoAdapter(getActivity(), R.layout.photo_card, cards);

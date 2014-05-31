@@ -1,5 +1,6 @@
 package com.formigone.frags.view;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.formigone.frags.R;
 
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 public class Card implements Fillable {
 	protected String title;
 	protected String fragHref;
+	protected ImageLoader mImageLoader;
 	
 	// TODO: make handler protected!!!
 	public static class ViewHandler
@@ -16,12 +18,20 @@ public class Card implements Fillable {
 	}
 
 	public Card(String title) {
-		this.title = title;
+		this(title, "");
 	}
 	
 	public Card(String title, String fragHref) {
 		this.title = title;
 		this.fragHref = fragHref;
+	}
+	
+	public void setImgLoader(ImageLoader imgLoader) {
+		mImageLoader = imgLoader;
+	}
+	
+	public ImageLoader getImgLoader() {
+		return mImageLoader;
 	}
 
 	public String getTitle() {
